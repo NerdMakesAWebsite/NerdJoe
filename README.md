@@ -1,2 +1,0 @@
-# NerdJoe
-idk
