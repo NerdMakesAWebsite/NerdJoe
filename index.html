@@ -7,7 +7,7 @@
     <title>NerdJoe's Community</title>
     
     <!-- Favicon (Tab Image) -->
-    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <link rel="icon" href="https://i.redd.it/0fpked1c45i91.jpg" type="image/jpeg">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Orbitron:wght@400&display=swap" rel="stylesheet">
@@ -47,22 +47,10 @@
             color: #FFD700; /* Title in gold */
             z-index: 2;
             position: relative;
-            overflow: hidden;
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .15em;
-            max-width: 90%; /* Ensure it doesn't overflow */
-            animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: white; }
+            animation: none; /* Removed typing animation */
         }
 
         /* Paragraph and other text styling */
