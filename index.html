@@ -51,12 +51,15 @@
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .15em;
+            max-width: 90%; /* Ensure it doesn't overflow */
             animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
         }
+
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
+
         @keyframes blink {
             from, to { border-color: transparent }
             50% { border-color: white; }
@@ -65,6 +68,8 @@
         /* Paragraph and other text styling */
         p, .promo {
             color: #66CDAA; /* Other text in medium aquamarine */
+            font-size: 1.2em; /* Adjusted font size for better readability */
+            margin: 10px 0; /* Added some margin for spacing */
         }
 
         /* Social icons styling */
@@ -75,14 +80,17 @@
             display: flex;
             justify-content: center;
             gap: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
+
         .social-icons img {
-            width: 50px;
-            height: 50px;
+            width: 40px; /* Reduced size for mobile */
+            height: 40px;
             transition: transform 0.3s, box-shadow 0.3s;
             vertical-align: middle;
-            margin: 20px;
+            margin: 10px;
         }
+
         .social-icons img:hover {
             transform: rotate(360deg) scale(1.1);
             box-shadow: 0 0 15px #ffcc00;
@@ -95,6 +103,26 @@
             font-size: 14px;
             z-index: 2;
             position: relative;
+        }
+
+        /* Media query for mobile screens */
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Adjust title size for smaller screens */
+            }
+
+            body {
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+
+            .social-icons img {
+                width: 30px; /* Further reduce icon size */
+                height: 30px;
+            }
+
+            p, .promo {
+                font-size: 1em; /* Reduce text size for readability */
+            }
         }
     </style>
 </head>
