@@ -11,105 +11,111 @@
     
     <style>
         /* Set background image on the html element */
-        html {
-            height: 100%; /* Ensure full height */
-            background: url('https://png.pngtree.com/thumb_back/fh260/background/20230720/pngtree-cool-neon-star-4k-uhd-glowing-abstract-background-in-blue-and-image_3705285.jpg') no-repeat center center fixed;
-            background-size: cover; /* Cover the entire viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
         }
 
-        /* Body Styling */
         body {
+            background: url('https://png.pngtree.com/thumb_back/fh260/background/20230720/pngtree-cool-neon-star-4k-uhd-glowing-abstract-background-in-blue-and-image_3705285.jpg') no-repeat center center fixed;
+            background-size: cover;
             font-family: 'Rajdhani', sans-serif;
-            color: #ffffff; /* Changed font color to white for better visibility */
             text-align: center;
             padding: 50px;
-            margin: 0; /* Remove default margin */
-            overflow: auto; /* Allow scrolling */
-            position: relative; /* Set position for overlay */
+            position: relative;
         }
 
-        /* Overlay for transparency */
+        /* Persistent darker overlay covering entire page */
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5); /* 50% transparent black */
-            z-index: 1; /* Ensures overlay is above the background */
+            background: rgba(0, 0, 0, 0.6); /* Persistent darker overlay */
+            z-index: 1;
+            pointer-events: none; /* Allows interaction with page elements while overlay stays fixed */
         }
-
-        /* Heading and promo styling */
+        
+        /* Title Styling */
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 3em;
-            z-index: 2; /* Above the overlay */
-            position: relative; /* Added for z-index */
+            color: #FFD700; /* Title in gold */
+            z-index: 2;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
         }
-        .promo {
-            margin: 20px;
-            font-size: 1.5em;
-            z-index: 2; /* Above the overlay */
-            position: relative; /* Added for z-index */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
         }
 
-        /* Social Icons Styling */
+        /* Paragraph and other text styling */
+        p, .promo {
+            color: #66CDAA; /* Other text in medium aquamarine */
+        }
+
+        /* Social icons styling */
         .social-icons {
             margin-top: 20px;
-            z-index: 2; /* Above the overlay */
-            position: relative; /* Added for z-index */
+            z-index: 2;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
         .social-icons img {
             width: 50px;
             height: 50px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             vertical-align: middle;
             margin: 20px;
         }
         .social-icons img:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Specific text color for social media prompts */
-        .social-icons p {
-            color: #ffcc00; /* Changed font color for better visibility */
-            font-size: 1.2em; /* Slightly larger font size for emphasis */
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 0 15px #ffcc00;
         }
 
-        /* Footer Styling */
+        /* Footer styling */
         footer {
             margin-top: 30px;
-            color: #ddd; /* Footer color */
+            color: #66CDAA;
             font-size: 14px;
-            z-index: 2; /* Above the overlay */
-            position: relative; /* Added for z-index */
+            z-index: 2;
+            position: relative;
         }
     </style>
 </head>
 <body>
 
-    <div class="overlay"></div> <!-- Overlay for transparency -->
+    <!-- Dark overlay for consistent darkness across the page -->
+    <div class="overlay"></div>
 
     <h1>Welcome to NerdJoe's Community!</h1>
     <p class="promo">Follow us on social media for coding tutorials and updates!</p>
 
-    <!-- Social Media Links -->
+    <!-- Social media links -->
     <div class="social-icons">
         <a href="https://www.youtube.com/@NerdWanToBeFamous" target="_blank">
-            <img src="https://www.citypng.com/public/uploads/preview/red-youtube-logo-symbol-701751694792489qxkccchok1.png" alt="YouTube">
-            <p>Subscribe on YouTube</p>
+            <img src="https://www.svgrepo.com/show/475700/youtube-color.svg" alt="YouTube">
         </a>
         <a href="https://discord.gg/jwqyJAnZF2" target="_blank">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCafLPPAGYFTHQ-T4PtDsmS71rKYYHdqY2xg&s" alt="Discord">
-            <p>Join Discord</p>
+            <img src="https://www.svgrepo.com/show/452188/discord.svg" alt="Discord">
         </a>
         <a href="https://x.com/NerdStopDrama" target="_blank">
-            <img src="https://w7.pngwing.com/pngs/748/680/png-transparent-twitter-x-logo.png" alt="Twitter">
-            <p>Follow on X (Twitter)</p>
+            <img src="https://logotyp.us/file/twitter-x.svg" alt="X (Twitter)">
         </a>
         <a href="https://www.tiktok.com/@nerdtrytodefeatbrainrot" target="_blank">
-            <img src="https://w7.pngwing.com/pngs/959/454/png-transparent-tiktok-logo-thumbnail.png" alt="TikTok">
-            <p>Follow on TikTok</p>
+            <img src="https://www.svgrepo.com/show/452114/tiktok.svg" alt="TikTok">
         </a>
     </div>
 
