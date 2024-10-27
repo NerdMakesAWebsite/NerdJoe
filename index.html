@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Orbitron:wght@400&display=swap" rel="stylesheet">
     
     <style>
-        /* Set background image on the html element */
+        /* Basic styling for page */
         html, body {
             height: 100%;
             margin: 0;
@@ -26,38 +26,86 @@
             text-align: center;
             padding: 50px;
             position: relative;
+            color: #66CDAA;
         }
 
-        /* Persistent darker overlay covering entire page */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6); /* Persistent darker overlay */
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
-            pointer-events: none; /* Allows interaction with page elements while overlay stays fixed */
+            pointer-events: none;
         }
-        
+
         /* Title Styling */
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 3em;
-            color: #FFD700; /* Title in gold */
+            color: #FFD700;
             z-index: 2;
             position: relative;
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .15em;
-            animation: none; /* Removed typing animation */
         }
 
-        /* Paragraph and other text styling */
-        p, .promo {
-            color: #66CDAA; /* Other text in medium aquamarine */
-            font-size: 1.2em; /* Adjusted font size for better readability */
-            margin: 10px 0; /* Added some margin for spacing */
+        /* Menu Styling */
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+            font-size: 1.5em;
+        }
+
+        .menu a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .menu a:hover {
+            color: #FFA500;
+        }
+
+        /* Dropdown for Games */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 999; /* High z-index to stay in front of everything */
+            text-align: left;
+        }
+
+        .dropdown-content a {
+            color: #66CDAA;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1em;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #444;
+        }
+
+        .show {
+            display: block;
         }
 
         /* Social icons styling */
@@ -68,11 +116,11 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            flex-wrap: wrap;
         }
 
         .social-icons img {
-            width: 40px; /* Reduced size for mobile */
+            width: 40px;
             height: 40px;
             transition: transform 0.3s, box-shadow 0.3s;
             vertical-align: middle;
@@ -96,29 +144,72 @@
         /* Media query for mobile screens */
         @media only screen and (max-width: 600px) {
             h1 {
-                font-size: 2em; /* Adjust title size for smaller screens */
+                font-size: 2em;
             }
 
             body {
-                padding: 10px; /* Reduce padding for smaller screens */
+                padding: 10px;
             }
 
             .social-icons img {
-                width: 30px; /* Further reduce icon size */
+                width: 30px;
                 height: 30px;
             }
 
+            .menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+
             p, .promo {
-                font-size: 1em; /* Reduce text size for readability */
+                font-size: 1em;
             }
         }
     </style>
+
+    <script>
+        // JavaScript function to toggle the dropdown visibility
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("gamesDropdown");
+            dropdownContent.classList.toggle("show");
+        }
+
+        // Close the dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 
     <!-- Dark overlay for consistent darkness across the page -->
     <div class="overlay"></div>
 
+    <!-- Menu -->
+    <div class="menu">
+        <a href="#">Home(not working)</a>
+        <a href="#">About(not working)</a>
+        <a href="#">Contact(not working)</a>
+
+        <!-- Dropdown for Games -->
+        <div class="dropdown">
+            <a class="dropdown-toggle" onclick="toggleDropdown()">Games</a>
+            <div id="gamesDropdown" class="dropdown-content">
+                <a href="https://nerdmakesawebsite.github.io/CatchTheFallingObject/" target="_blank">Catch the Falling Object</a>
+                <a href="https://nerdmakesawebsite.github.io/GuessTheNumber/" target="_blank">Guess the Number</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Title and Content -->
     <h1>Welcome to NerdJoe's Community!</h1>
     <p class="promo">Follow us on social media for coding tutorials and updates!</p>
 
