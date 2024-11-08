@@ -20,13 +20,13 @@
         }
 
         body {
-            background: url('https://png.pngtree.com/thumb_back/fh260/background/20230720/pngtree-cool-neon-star-4k-uhd-glowing-abstract-background-in-blue-and-image_3705285.jpg') no-repeat center center fixed;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/c/cc/Digital_rain_animation_medium_letters_shine.gif') no-repeat center center fixed;
             background-size: cover;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Share Tech Mono', monospace;
             text-align: center;
             padding: 50px;
             position: relative;
-            color: #66CDAA;
+            color: #00ff00;
         }
 
         .overlay {
@@ -35,7 +35,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 1;
             pointer-events: none;
         }
@@ -44,12 +44,14 @@
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 3em;
-            color: #FFD700;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
             z-index: 2;
             position: relative;
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .15em;
+            animation: glitch 1.5s infinite;
         }
 
         /* Menu Styling */
@@ -64,14 +66,16 @@
         }
 
         .menu a {
-            color: #FFD700;
+            color: #00ff00;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s, text-shadow 0.3s;
             cursor: pointer;
+            text-shadow: 0 0 8px #00ff00;
         }
 
         .menu a:hover {
-            color: #FFA500;
+            color: #00ff00;
+            text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00;
         }
 
         /* Dropdown for Games */
@@ -85,23 +89,26 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #333;
+            background-color: #111;
             min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 999; /* High z-index to stay in front of everything */
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.4);
+            z-index: 999;
             text-align: left;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
         }
 
         .dropdown-content a {
-            color: #66CDAA;
+            color: #00ff00;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             font-size: 1em;
+            transition: background-color 0.3s;
         }
 
         .dropdown-content a:hover {
-            background-color: #444;
+            background-color: #222;
         }
 
         .show {
@@ -125,20 +132,50 @@
             transition: transform 0.3s, box-shadow 0.3s;
             vertical-align: middle;
             margin: 10px;
+            filter: brightness(1.5);
         }
 
         .social-icons img:hover {
             transform: rotate(360deg) scale(1.1);
-            box-shadow: 0 0 15px #ffcc00;
+            box-shadow: 0 0 20px #00ff00;
         }
 
         /* Footer styling */
         footer {
             margin-top: 30px;
-            color: #66CDAA;
+            color: #00ff00;
             font-size: 14px;
             z-index: 2;
             position: relative;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        /* Glitch animation */
+        @keyframes glitch {
+            0% {
+            transform: translate(0);
+            opacity: 1;
+        }
+            20% {
+                transform: translate(-2px, 2px);
+                opacity: 0.8;
+            }
+            40% {
+                 transform: translate(2px, -2px);
+                 opacity: 1;
+            }
+            60% {
+                 transform: translate(-2px, 2px);
+                 opacity: 0.8;
+            }
+            80% {
+                 transform: translate(2px, -2px);
+                 opacity: 1;
+            }
+            100% {
+                 transform: translate(0);
+                 opacity: 1;
+            }
         }
 
         /* Media query for mobile screens */
@@ -165,6 +202,7 @@
                 font-size: 1em;
             }
         }
+
     </style>
 
     <script>
