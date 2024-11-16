@@ -7,11 +7,11 @@
     <title>NerdJoe's Community</title>
     
     <!-- Favicon (Tab Image) -->
-    <link rel="icon" href="https://i.redd.it/0fpked1c45i91.jpg" type="image/jpeg">
-
+    <link rel="icon" type="image/png" href="NLC Profile.png">
+	
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Orbitron:wght@400&display=swap" rel="stylesheet">
-    
+  
     <style>
         /* Basic styling for page */
         html, body {
@@ -36,7 +36,7 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 1;
+            z-index: auto;
             pointer-events: none;
         }
 
@@ -46,7 +46,7 @@
             font-size: 3em;
             color: #00ff00;
             text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-            z-index: 2;
+            z-index: auto;
             position: relative;
             white-space: nowrap;
             margin: 0 auto;
@@ -60,7 +60,7 @@
             justify-content: center;
             gap: 30px;
             margin-bottom: 20px;
-            z-index: 2;
+            z-index: auto;
             position: relative;
             font-size: 1.5em;
         }
@@ -82,6 +82,7 @@
         .dropdown {
             position: relative;
             display: inline-block;
+			z-index: 9999;
         }
 
         .dropdown-content {
@@ -96,6 +97,7 @@
             text-align: left;
             border: 1px solid #00ff00;
             border-radius: 5px;
+			z-index: 9999;
         }
 
         .dropdown-content a {
@@ -215,6 +217,11 @@
                 font-size: 1em;
             }
         }
+		
+		/* Ensure parent doesn't interfere */
+        body, html {
+            overflow: visible; /* Prevent clipping */
+        }
 
     </style>
 
@@ -246,9 +253,6 @@
 
     <!-- Menu -->
     <div class="menu">
-        <a href="#">Home(not working)</a>
-        <a href="#">About(not working)</a>
-        <a href="#">Contact(not working)</a>
 
         <!-- Dropdown for Games -->
         <div class="dropdown">
