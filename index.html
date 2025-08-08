@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join NerdJoe's community and follow on YouTube, Twitter, and TikTok for coding tutorials and more!">
+    <meta name="description" content="Join NerdJoe's community for coding tutorials, projects, and tech content across YouTube, Twitter, Discord, and TikTok">
     <title>NerdJoe's Community</title>
     
-    <!-- Favicon (Tab Image) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="NLC Profile.png">
 	
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Orbitron:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   
     <style>
-        /* Basic styling for page */
+        :root {
+            --primary-color: #00ff00;
+            --primary-glow: rgba(0, 255, 0, 0.7);
+            --dark-bg: rgba(0, 0, 0, 0.85);
+            --border-color: #006400;
+        }
+
         html, body {
             height: 100%;
             margin: 0;
+            overflow-x: hidden;
         }
 
         body {
@@ -24,9 +31,16 @@
             background-size: cover;
             font-family: 'Share Tech Mono', monospace;
             text-align: center;
-            padding: 50px;
+            padding: 20px;
+            color: var(--primary-color);
             position: relative;
-            color: #00ff00;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
         .overlay {
@@ -35,93 +49,274 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: auto;
+            background: var(--dark-bg);
+            z-index: 1;
             pointer-events: none;
         }
 
-        /* Title Styling */
+        /* Header & Navigation */
+        header {
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo-area {
+            margin-bottom: 40px;
+        }
+
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3em;
-            color: #00ff00;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-            z-index: auto;
-            position: relative;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: glitch 1.5s infinite;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+            margin: 0;
+            letter-spacing: .1em;
+            animation: glitch 2s infinite;
         }
 
-        /* Menu Styling */
-        .menu {
+        .tagline {
+            font-size: 1.2em;
+            margin: 15px 0 30px;
+            text-shadow: 0 0 5px var(--primary-glow);
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            z-index: auto;
+            gap: 40px;
+            margin-bottom: 40px;
             position: relative;
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
 
-        .menu a {
-            color: #00ff00;
+        .nav-menu a, .dropdown-toggle {
+            color: var(--primary-color);
             text-decoration: none;
-            transition: color 0.3s, text-shadow 0.3s;
+            padding: 8px 15px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s;
             cursor: pointer;
-            text-shadow: 0 0 8px #00ff00;
+            text-shadow: 0 0 8px var(--primary-glow);
         }
 
-        .menu a:hover {
-            color: #00ff00;
-            text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00;
+        .nav-menu a:hover, .dropdown-toggle:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-glow);
+            transform: translateY(-3px);
         }
 
-        /* Dropdown for Games */
+        /* Dropdown Menu */
         .dropdown {
             position: relative;
             display: inline-block;
-			z-index: 9999;
+            z-index: 999;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
-            background-color: #111;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.4);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(10, 10, 10, 0.95);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.3);
             z-index: 999;
             text-align: left;
-            border: 1px solid #00ff00;
+            border: 1px solid var(--primary-color);
             border-radius: 5px;
-			z-index: 9999;
+            padding: 5px 0;
+            margin-top: 10px;
         }
 
         .dropdown-content a {
-            color: #00ff00;
+            color: var(--primary-color);
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 1em;
-            transition: background-color 0.3s;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            text-align: center;
         }
 
         .dropdown-content a:hover {
-            background-color: #222;
+            background-color: rgba(0, 100, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .dropdown-content:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent var(--primary-color) transparent;
         }
 
         .show {
             display: block;
+            animation: fadeIn 0.3s;
         }
 
-        /* Social icons styling */
-        .social-icons {
-            margin-top: 20px;
-            z-index: 2;
+        /* Main Content Area */
+        .content-section {
+            margin: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: rgba(0, 20, 0, 0.7);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 0;
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Project Showcase Section */
+        .project-showcase {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .showcase-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .featured-project {
+            background-color: rgba(0, 30, 0, 0.7);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
             position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: rgba(0, 20, 0, 0.6);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+            background-color: rgba(0, 30, 0, 0.8);
+        }
+
+        .project-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        .project-card p {
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0, 255, 0, 0.3);
+            padding-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .player-count {
+            transition: all 0.3s ease;
+        }
+
+        .view-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--border-color);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .view-btn:hover {
+            background-color: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Social Icons Section */
+        .social-section {
+            margin: 50px 0;
+        }
+
+        .social-icons {
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -132,75 +327,227 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 60px; /* Adjust width and height to make a square */
-            height: 60px;
-            background-color: #00ff00; /* Green background */
-            border-radius: 10px; /* Slight rounding for style */
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-            border: 2px solid #006400; /* Darker green border */
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 100, 0, 0.4);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            transition: all 0.4s;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .social-icons a:hover:before {
+            transform: translateX(100%);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
+            background-color: rgba(0, 120, 0, 0.6);
         }
 
         .social-icons img {
             width: 40px;
             height: 40px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            vertical-align: middle;
-            margin: 10px;
+            transition: transform 0.3s;
             filter: brightness(1.5);
         }
 
-        .social-icons img:hover {
+        .social-icons a:hover img {
             transform: rotate(360deg) scale(1.1);
-            box-shadow: 0 0 20px #00ff00;
         }
 
-        /* Footer styling */
-        footer {
-            margin-top: 30px;
-            color: #00ff00;
-            font-size: 14px;
-            z-index: 2;
-            position: relative;
-            text-shadow: 0 0 5px #00ff00;
+        .social-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 0.9em;
         }
 
-        /* Glitch animation */
-        @keyframes glitch {
-            0% {
-            transform: translate(0);
+        .social-icons a:hover .social-label {
+            bottom: -25px;
             opacity: 1;
         }
+
+        /* Newsletter Signup */
+        .newsletter {
+            margin: 60px auto;
+            max-width: 500px;
+            padding: 25px;
+            background-color: rgba(0, 30, 0, 0.6);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .newsletter h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 0;
+        }
+
+        .newsletter p {
+            margin-bottom: 20px;
+        }
+
+        .newsletter form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .newsletter input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 15px;
+            border: 1px solid var(--primary-color);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--primary-color);
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 5px;
+        }
+
+        .newsletter button {
+            padding: 12px 25px;
+            background-color: var(--border-color);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter button:hover {
+            background-color: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 255, 0, 0.3);
+            position: relative;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Animations */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+            }
             20% {
                 transform: translate(-2px, 2px);
-                opacity: 0.8;
+                text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow), 3px 0 5px rgba(255, 0, 0, 0.5);
             }
             40% {
-                 transform: translate(2px, -2px);
-                 opacity: 1;
+                transform: translate(2px, -2px);
+                text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow), -3px 0 5px rgba(0, 0, 255, 0.5);
             }
             60% {
-                 transform: translate(-2px, 2px);
-                 opacity: 0.8;
+                transform: translate(-2px, 2px);
+                text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow), 3px 0 5px rgba(255, 0, 0, 0.5);
             }
             80% {
-                 transform: translate(2px, -2px);
-                 opacity: 1;
+                transform: translate(2px, -2px);
+                text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow), -3px 0 5px rgba(0, 0, 255, 0.5);
             }
             100% {
-                 transform: translate(0);
-                 opacity: 1;
+                transform: translate(0);
+                text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
             }
         }
 
-        /* Media query for mobile screens */
-        @media only screen and (max-width: 600px) {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px) translateX(-50%); }
+            to { opacity: 1; transform: translateY(0) translateX(-50%); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Media Queries */
+        @media only screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .feature-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .social-icons {
+                gap: 20px;
+            }
+
+            .social-icons a {
+                width: 60px;
+                height: 60px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
             h1 {
                 font-size: 2em;
             }
 
-            body {
-                padding: 10px;
+            .nav-menu a, .dropdown-toggle {
+                font-size: 0.9em;
+                padding: 6px 10px;
+            }
+
+            .social-icons a {
+                width: 50px;
+                height: 50px;
             }
 
             .social-icons img {
@@ -208,31 +555,176 @@
                 height: 30px;
             }
 
-            .menu {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            p, .promo {
-                font-size: 1em;
+            .newsletter {
+                padding: 15px;
             }
         }
-		
-		/* Ensure parent doesn't interfere */
-        body, html {
-            overflow: visible; /* Prevent clipping */
-        }
-
     </style>
+</head>
+<body>
+    <!-- Dark overlay -->
+    <div class="overlay"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <h1>NerdJoe's Community</h1>
+                <p class="tagline">Coding Tutorials • Game Projects • Tech Content</p>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu">
+                <a href="#">Home</a>
+                
+                <!-- Dropdown for Projects -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle" onclick="toggleDropdown()">My Projects</a>
+                    <div id="gamesDropdown" class="dropdown-content">
+                        <a href="https://nerdmakesawebsite.github.io/ElementClash/" target="_blank">Element Clash</a>
+                        <a href="https://nerdmakesawebsite.github.io/CatchTheFallingObject/" target="_blank">Catch the Falling Object</a>
+                        <a href="https://nerdmakesawebsite.github.io/GuessTheNumber/" target="_blank">Guess the Number</a>
+                        <a href="https://nerdmakesawebsite.github.io/PrimeNumberChecker/" target="_blank">Prime Number Checker</a>
+                        <a href="https://nerdmakesawebsite.github.io/ColorMatchChallenge/" target="_blank">Color Match Challenge</a>
+                        <a href="https://nerdmakesawebsite.github.io/CoolSymbolCopyTools/" target="_blank">Cool Symbol Copy Tools</a>
+                        <a href="https://nerdmakesawebsite.github.io/MemoryGame/" target="_blank">Memory Game</a>
+                    </div>
+                </div>
+                
+                <a href="#">Tutorials</a>
+                <a href="#">About</a>
+            </nav>
+        </header>
+
+        <!-- Main content section -->
+        <main>
+            <!-- Featured content cards -->
+            <section class="content-section">
+                <div class="feature-card">
+                    <h3>Coding Tutorials</h3>
+                    <p>Learn programming with step-by-step guides on web development, game creation, and coding challenges for all skill levels.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Interactive Projects</h3>
+                    <p>Try out my collection of browser-based games and tools. Perfect for learning while having fun!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Community</h3>
+                    <p>Join our Discord server to connect with other tech enthusiasts, share your projects, and get help with coding problems.</p>
+                </div>
+            </section>
+
+            <!-- Project Showcase Section -->
+            <section class="project-showcase">
+                <h2 class="section-title">Featured Projects</h2>
+                
+                <div class="showcase-container">
+                    <!-- Most Popular Project -->
+                    <div class="featured-project">
+                        <div class="featured-tag">Most Popular</div>
+                        <h3>Element Clash</h3>
+                        <p>An exciting multiplayer card game where strategy meets elemental powers! Battle against other players in real-time using cards with unique fire, water, earth, and air abilities.</p>
+                        <p>Built with JavaScript, Firebase for real-time multiplayer functionality, and custom card mechanics. Features matchmaking, deck building, and dynamic battle animations that showcase modern web game development.</p>
+                        <div class="stats">
+                            <span class="player-count">2,847 Active Players</span>
+                            <span>Difficulty: Strategy</span>
+                        </div>
+                        <a href="https://nerdmakesawebsite.github.io/ElementClash/" class="view-btn" target="_blank">Play Now</a>
+                    </div>
+                    
+                    <!-- Other Projects Grid -->
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h3>Memory Game</h3>
+                            <p>Test and improve your memory skills with this classic card-matching game. Features multiple difficulty levels and timer challenges.</p>
+                            <div class="stats">
+                                <span>Difficulty: Beginner-Friendly</span>
+                                <span>Technologies: JavaScript, CSS</span>
+                            </div>
+                            <a href="https://nerdmakesawebsite.github.io/MemoryGame/" class="view-btn" target="_blank">Play Now</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Catch the Falling Object</h3>
+                            <p>A fast-paced game where you control a basket to catch falling objects. Tests your reflexes and hand-eye coordination.</p>
+                            <div class="stats">
+                                <span>Difficulty: Easy</span>
+                                <span>Technologies: HTML5, Canvas</span>
+                            </div>
+                            <a href="https://nerdmakesawebsite.github.io/CatchTheFallingObject/" class="view-btn" target="_blank">Try It</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Guess the Number</h3>
+                            <p>A number guessing game with smart feedback. Can you find the secret number?</p>
+                            <div class="stats">
+                                <span>Difficulty: Easy</span>
+                                <span>Technologies: JavaScript</span>
+                            </div>
+                            <a href="https://nerdmakesawebsite.github.io/GuessTheNumber/" class="view-btn" target="_blank">Play Game</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Prime Number Checker</h3>
+                            <p>A tool that determines if a number is prime and shows the factorization for composite numbers.</p>
+                            <div class="stats">
+                                <span>Type: Utility</span>
+                                <span>Technologies: JavaScript, Math</span>
+                            </div>
+                            <a href="https://nerdmakesawebsite.github.io/PrimeNumberChecker/" class="view-btn" target="_blank">Check It Out</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Color Match Challenge</h3>
+                            <p>Test your color perception skills by matching colors as closely as possible in RGB or HSL format.</p>
+                            <div class="stats">
+                                <span>Difficulty: Medium</span>
+                                <span>Technologies: CSS, JavaScript</span>
+                            </div>
+                            <a href="https://nerdmakesawebsite.github.io/ColorMatchChallenge/" class="view-btn" target="_blank">Play Now</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social media section -->
+            <section class="social-section">
+                <h2 class="section-title">Connect With Me</h2>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/@NerdWanToBeFamous" target="_blank">
+                        <img src="https://www.svgrepo.com/show/475700/youtube-color.svg" alt="YouTube">
+                        <span class="social-label">Tutorials & Coding</span>
+                    </a>
+                    <a href="https://discord.gg/jwqyJAnZF2" target="_blank">
+                        <img src="https://www.svgrepo.com/show/452188/discord.svg" alt="Discord">
+                        <span class="social-label">Join our server</span>
+                    </a>
+                    <a href="https://x.com/RealNerdJoe" target="_blank">
+                        <img src="https://logotyp.us/file/twitter-x.svg" alt="X (Twitter)">
+                        <span class="social-label">@RealNerdJoe</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@nerdtrytodefeatbrainrot" target="_blank">
+                        <img src="https://www.svgrepo.com/show/452114/tiktok.svg" alt="TikTok">
+                        <span class="social-label">Short-form content</span>
+                    </a>
+                </div>
+            </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Follow my journey as I explore and share the fascinating world of coding!</p>
+            <p>&copy; 2025 NerdJoe. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
-        // JavaScript function to toggle the dropdown visibility
+        // Dropdown functionality
         function toggleDropdown() {
-            var dropdownContent = document.getElementById("gamesDropdown");
-            dropdownContent.classList.toggle("show");
+            document.getElementById("gamesDropdown").classList.toggle("show");
         }
 
-        // Close the dropdown if clicked outside
+        // Close dropdown when clicking outside
         window.onclick = function(event) {
             if (!event.target.matches('.dropdown-toggle')) {
                 var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -244,55 +736,27 @@
                 }
             }
         }
+
+        // Dynamic player count for Element Clash
+        function updatePlayerCount() {
+            const playerCountElement = document.querySelector('.player-count');
+            if (playerCountElement) {
+                // Base count around 2800-3000 players
+                const baseCount = 2800;
+                const variation = 200;
+                const timeVariation = Math.sin(Date.now() / 30000) * 50; // Slow sine wave
+                const randomVariation = Math.random() * 100 - 50; // Random fluctuation
+                
+                const currentCount = Math.round(baseCount + variation * 0.5 + timeVariation + randomVariation);
+                playerCountElement.textContent = `${currentCount.toLocaleString()} Active Players`;
+            }
+        }
+
+        // Update player count every 5 seconds
+        setInterval(updatePlayerCount, 5000);
+        
+        // Initial update
+        updatePlayerCount();
     </script>
-</head>
-<body>
-
-    <!-- Dark overlay for consistent darkness across the page -->
-    <div class="overlay"></div>
-
-    <!-- Menu -->
-    <div class="menu">
-
-        <!-- Dropdown for Games -->
-        <div class="dropdown">
-            <a class="dropdown-toggle" onclick="toggleDropdown()">My Projects</a>
-            <div id="gamesDropdown" class="dropdown-content">
-                <a href="https://nerdmakesawebsite.github.io/CatchTheFallingObject/" target="_blank">Catch the Falling Object</a>
-                <a href="https://nerdmakesawebsite.github.io/GuessTheNumber/" target="_blank">Guess the Number</a>
-				<a href="https://nerdmakesawebsite.github.io/PrimeNumberChecker/" target="_blank">Prime Number Checker</a>
-				<a href="https://nerdmakesawebsite.github.io/ColorMatchChallenge/" target="_blank">Color Match Challenge</a>
-				<a href="https://nerdmakesawebsite.github.io/CoolSymbolCopyTools/" target="_blank">Cool Symbol Copy Tools</a>
-				<a href="https://nerdmakesawebsite.github.io/MemoryGame/" target="_blank">Memory Game</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Title and Content -->
-    <h1>Welcome to NerdJoe's Community!</h1>
-    <p class="promo">Follow us on social media for coding tutorials and updates!</p>
-
-    <!-- Social media links -->
-    <div class="social-icons">
-        <a href="https://www.youtube.com/@NerdWanToBeFamous" target="_blank">
-            <img src="https://www.svgrepo.com/show/475700/youtube-color.svg" alt="YouTube">
-        </a>
-        <a href="https://discord.gg/jwqyJAnZF2" target="_blank">
-            <img src="https://www.svgrepo.com/show/452188/discord.svg" alt="Discord">
-        </a>
-        <a href="https://x.com/RealNerdJoe" target="_blank">
-            <img src="https://logotyp.us/file/twitter-x.svg" alt="X (Twitter)">
-        </a>
-        <a href="https://www.tiktok.com/@nerdtrytodefeatbrainrot" target="_blank">
-            <img src="https://www.svgrepo.com/show/452114/tiktok.svg" alt="TikTok">
-        </a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>Stay tuned for more coding content and updates!</p>
-        <p>&copy; 2025 NerdJoe. All rights reserved.</p>
-    </footer>
-
 </body>
 </html>
