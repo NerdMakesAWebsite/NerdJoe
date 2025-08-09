@@ -114,6 +114,7 @@
             position: relative;
             display: inline-block;
             z-index: 999;
+            margin: 0 10px;
         }
 
         .dropdown-content {
@@ -287,8 +288,10 @@
             font-size: 0.9em;
         }
 
-        .player-count {
+        .player-count, .user-count {
             transition: all 0.3s ease;
+            color: #00ff88;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
         }
 
         .view-btn {
@@ -578,15 +581,22 @@
                 
                 <!-- Dropdown for Projects -->
                 <div class="dropdown">
-                    <a class="dropdown-toggle" onclick="toggleDropdown()">My Projects</a>
+                    <a class="dropdown-toggle" onclick="toggleDropdown('gamesDropdown')">Games</a>
                     <div id="gamesDropdown" class="dropdown-content">
                         <a href="https://nerdmakesawebsite.github.io/ElementClash/" target="_blank">Element Clash</a>
                         <a href="https://nerdmakesawebsite.github.io/CatchTheFallingObject/" target="_blank">Catch the Falling Object</a>
                         <a href="https://nerdmakesawebsite.github.io/GuessTheNumber/" target="_blank">Guess the Number</a>
-                        <a href="https://nerdmakesawebsite.github.io/PrimeNumberChecker/" target="_blank">Prime Number Checker</a>
                         <a href="https://nerdmakesawebsite.github.io/ColorMatchChallenge/" target="_blank">Color Match Challenge</a>
-                        <a href="https://nerdmakesawebsite.github.io/CoolSymbolCopyTools/" target="_blank">Cool Symbol Copy Tools</a>
                         <a href="https://nerdmakesawebsite.github.io/MemoryGame/" target="_blank">Memory Game</a>
+                    </div>
+                </div>
+                
+                <!-- Dropdown for Tools -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle" onclick="toggleDropdown('toolsDropdown')">Tools</a>
+                    <div id="toolsDropdown" class="dropdown-content">
+                        <a href="https://nerdmakesawebsite.github.io/PrimeNumberChecker/" target="_blank">Prime Number Checker</a>
+                        <a href="https://nerdmakesawebsite.github.io/CoolSymbolCopyTools/" target="_blank">Cool Symbol Copy Tools</a>
                     </div>
                 </div>
                 
@@ -627,7 +637,7 @@
                         <p>An exciting multiplayer card game where strategy meets elemental powers! Battle against other players in real-time using cards with unique fire, water, earth, and air abilities.</p>
                         <p>Built with JavaScript, Firebase for real-time multiplayer functionality, and custom card mechanics. Features matchmaking, deck building, and dynamic battle animations that showcase modern web game development.</p>
                         <div class="stats">
-                            <span class="player-count">2,847 Active Players</span>
+                            <span class="player-count" id="element-clash-count">2,847 Active Players</span>
                             <span>Difficulty: Strategy</span>
                         </div>
                         <a href="https://nerdmakesawebsite.github.io/ElementClash/" class="view-btn" target="_blank">Play Now</a>
@@ -639,7 +649,7 @@
                             <h3>Memory Game</h3>
                             <p>Test and improve your memory skills with this classic card-matching game. Features multiple difficulty levels and timer challenges.</p>
                             <div class="stats">
-                                <span>Difficulty: Beginner-Friendly</span>
+                                <span class="player-count" id="memory-game-count">1,205 Daily Players</span>
                                 <span>Technologies: JavaScript, CSS</span>
                             </div>
                             <a href="https://nerdmakesawebsite.github.io/MemoryGame/" class="view-btn" target="_blank">Play Now</a>
@@ -649,7 +659,7 @@
                             <h3>Catch the Falling Object</h3>
                             <p>A fast-paced game where you control a basket to catch falling objects. Tests your reflexes and hand-eye coordination.</p>
                             <div class="stats">
-                                <span>Difficulty: Easy</span>
+                                <span class="player-count" id="catch-game-count">892 Weekly Players</span>
                                 <span>Technologies: HTML5, Canvas</span>
                             </div>
                             <a href="https://nerdmakesawebsite.github.io/CatchTheFallingObject/" class="view-btn" target="_blank">Try It</a>
@@ -657,32 +667,42 @@
                         
                         <div class="project-card">
                             <h3>Guess the Number</h3>
-                            <p>A number guessing game with smart feedback. Can you find the secret number?</p>
+                            <p>A number guessing game with smart feedback. Can you find the secret number in the fewest attempts?</p>
                             <div class="stats">
-                                <span>Difficulty: Easy</span>
+                                <span class="player-count" id="guess-game-count">634 Active Players</span>
                                 <span>Technologies: JavaScript</span>
                             </div>
                             <a href="https://nerdmakesawebsite.github.io/GuessTheNumber/" class="view-btn" target="_blank">Play Game</a>
                         </div>
                         
                         <div class="project-card">
-                            <h3>Prime Number Checker</h3>
-                            <p>A tool that determines if a number is prime and shows the factorization for composite numbers.</p>
+                            <h3>Color Match Challenge</h3>
+                            <p>Test your color perception skills by matching colors as closely as possible in RGB or HSL format.</p>
                             <div class="stats">
-                                <span>Type: Utility</span>
+                                <span class="player-count" id="color-game-count">567 Weekly Players</span>
+                                <span>Technologies: CSS, JavaScript</span>
+                            </div>
+                            <a href="https://nerdmakesawebsite.github.io/ColorMatchChallenge/" class="view-btn" target="_blank">Play Now</a>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h3>Prime Number Checker</h3>
+                            <p>A powerful tool that determines if a number is prime and shows the complete factorization for composite numbers.</p>
+                            <div class="stats">
+                                <span class="user-count" id="prime-checker-count">1,432 Monthly Users</span>
                                 <span>Technologies: JavaScript, Math</span>
                             </div>
                             <a href="https://nerdmakesawebsite.github.io/PrimeNumberChecker/" class="view-btn" target="_blank">Check It Out</a>
                         </div>
                         
                         <div class="project-card">
-                            <h3>Color Match Challenge</h3>
-                            <p>Test your color perception skills by matching colors as closely as possible in RGB or HSL format.</p>
+                            <h3>Cool Symbol Copy Tools</h3>
+                            <p>Copy unique symbols, emojis, and special characters with a single click. Perfect for social media, documents, and creative projects.</p>
                             <div class="stats">
-                                <span>Difficulty: Medium</span>
-                                <span>Technologies: CSS, JavaScript</span>
+                                <span class="user-count" id="symbol-tools-count">2,108 Monthly Users</span>
+                                <span>Technologies: JavaScript, Unicode</span>
                             </div>
-                            <a href="https://nerdmakesawebsite.github.io/ColorMatchChallenge/" class="view-btn" target="_blank">Play Now</a>
+                            <a href="https://nerdmakesawebsite.github.io/CoolSymbolCopyTools/" class="view-btn" target="_blank">Try It Out</a>
                         </div>
                     </div>
                 </div>
@@ -720,8 +740,8 @@
 
     <script>
         // Dropdown functionality
-        function toggleDropdown() {
-            document.getElementById("gamesDropdown").classList.toggle("show");
+        function toggleDropdown(dropdownId) {
+            document.getElementById(dropdownId).classList.toggle("show");
         }
 
         // Close dropdown when clicking outside
@@ -737,26 +757,93 @@
             }
         }
 
-        // Dynamic player count for Element Clash
-        function updatePlayerCount() {
-            const playerCountElement = document.querySelector('.player-count');
-            if (playerCountElement) {
-                // Base count around 2800-3000 players
+        // Close other dropdowns when opening a new one
+        function toggleDropdown(dropdownId) {
+            // Close all other dropdowns first
+            var allDropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < allDropdowns.length; i++) {
+                if (allDropdowns[i].id !== dropdownId) {
+                    allDropdowns[i].classList.remove('show');
+                }
+            }
+            
+            // Toggle the clicked dropdown
+            document.getElementById(dropdownId).classList.toggle("show");
+        }
+
+        // Dynamic counts for all projects
+        function updateAllCounts() {
+            // Element Clash - Main multiplayer game (highest count)
+            const elementClashElement = document.getElementById('element-clash-count');
+            if (elementClashElement) {
                 const baseCount = 2800;
                 const variation = 200;
-                const timeVariation = Math.sin(Date.now() / 30000) * 50; // Slow sine wave
-                const randomVariation = Math.random() * 100 - 50; // Random fluctuation
-                
+                const timeVariation = Math.sin(Date.now() / 30000) * 50;
+                const randomVariation = Math.random() * 100 - 50;
                 const currentCount = Math.round(baseCount + variation * 0.5 + timeVariation + randomVariation);
-                playerCountElement.textContent = `${currentCount.toLocaleString()} Active Players`;
+                elementClashElement.textContent = `${currentCount.toLocaleString()} Active Players`;
+            }
+
+            // Memory Game
+            const memoryGameElement = document.getElementById('memory-game-count');
+            if (memoryGameElement) {
+                const baseCount = 1200;
+                const variation = Math.sin(Date.now() / 40000) * 30 + Math.random() * 50 - 25;
+                const currentCount = Math.round(baseCount + variation);
+                memoryGameElement.textContent = `${currentCount.toLocaleString()} Daily Players`;
+            }
+
+            // Catch the Falling Object
+            const catchGameElement = document.getElementById('catch-game-count');
+            if (catchGameElement) {
+                const baseCount = 890;
+                const variation = Math.sin(Date.now() / 50000) * 20 + Math.random() * 30 - 15;
+                const currentCount = Math.round(baseCount + variation);
+                catchGameElement.textContent = `${currentCount.toLocaleString()} Weekly Players`;
+            }
+
+            // Guess the Number
+            const guessGameElement = document.getElementById('guess-game-count');
+            if (guessGameElement) {
+                const baseCount = 630;
+                const variation = Math.sin(Date.now() / 35000) * 25 + Math.random() * 20 - 10;
+                const currentCount = Math.round(baseCount + variation);
+                guessGameElement.textContent = `${currentCount.toLocaleString()} Active Players`;
+            }
+
+            // Color Match Challenge
+            const colorGameElement = document.getElementById('color-game-count');
+            if (colorGameElement) {
+                const baseCount = 565;
+                const variation = Math.sin(Date.now() / 45000) * 15 + Math.random() * 20 - 10;
+                const currentCount = Math.round(baseCount + variation);
+                colorGameElement.textContent = `${currentCount.toLocaleString()} Weekly Players`;
+            }
+
+            // Prime Number Checker (Tool)
+            const primeCheckerElement = document.getElementById('prime-checker-count');
+            if (primeCheckerElement) {
+                const baseCount = 1430;
+                const variation = Math.sin(Date.now() / 60000) * 40 + Math.random() * 30 - 15;
+                const currentCount = Math.round(baseCount + variation);
+                primeCheckerElement.textContent = `${currentCount.toLocaleString()} Monthly Users`;
+            }
+
+            // Cool Symbol Copy Tools (Tool)
+            const symbolToolsElement = document.getElementById('symbol-tools-count');
+            if (symbolToolsElement) {
+                const baseCount = 2100;
+                const variation = Math.sin(Date.now() / 55000) * 60 + Math.random() * 40 - 20;
+                const currentCount = Math.round(baseCount + variation);
+                symbolToolsElement.textContent = `${currentCount.toLocaleString()} Monthly Users`;
             }
         }
 
-        // Update player count every 5 seconds
-        setInterval(updatePlayerCount, 5000);
+        // Update all counts every 4 seconds for more dynamic feel
+        setInterval(updateAllCounts, 4000);
         
         // Initial update
-        updatePlayerCount();
+        updateAllCounts();
     </script>
 </body>
 </html>
